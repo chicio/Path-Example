@@ -5,18 +5,15 @@ import PlaygroundSupport
 
 private struct TitleBackgroundShape: Shape {
     private let path: UIBezierPath
-    private let width: CGFloat
-    private let height: CGFloat
     
-    init(path: UIBezierPath, width: CGFloat, height: CGFloat) {
+    init(path: UIBezierPath) {
         self.path = path
-        self.width = width
-        self.height = height
     }
     
     func path(in rect: CGRect) -> Path {
-        return Path(path.cgPath)
-            .applying(CGAffineTransform(scaleX: rect.width / width, y: rect.height/height))
+        let path = Path(path.cgPath)
+        return path
+            .applying(CGAffineTransform(scaleX: rect.width / path.boundingRect.width, y: rect.height/path.boundingRect.height))
     }
 }
 
@@ -42,9 +39,9 @@ struct TitleBackground: View {
     
     var body: some View {
         ZStack(alignment: Alignment.topLeading) {
-            TitleBackgroundShape(path: purplePath, width: 245, height: 18.79)
+            TitleBackgroundShape(path: purplePath)
                 .fill(Color("SecondaryColor"))
-            TitleBackgroundShape(path: whitePath, width: 245, height: 18.79)
+            TitleBackgroundShape(path: whitePath)
                 .fill(Color("TextColor"))
         }
     }
