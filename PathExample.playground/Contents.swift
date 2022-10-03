@@ -12,8 +12,12 @@ private struct TitleBackgroundShape: Shape {
     
     func path(in rect: CGRect) -> Path {
         let path = Path(path.cgPath)
-        return path
-            .applying(CGAffineTransform(scaleX: rect.width / path.boundingRect.width, y: rect.height/path.boundingRect.height))
+        return path.applying(
+            CGAffineTransform(
+                scaleX: rect.width / path.boundingRect.width,
+                y: rect.height / path.boundingRect.height
+            )
+        )
     }
 }
 
@@ -57,9 +61,9 @@ struct InspirationaTitle: View {
                 .rotationEffect(Angle(degrees: -1.38))
                 .lineLimit(1)
                 .multilineTextAlignment(.center)
-                .padding(.leading, 11)
+                .padding(.leading, 12)
                 .padding(.trailing, 4)
-                .padding(.bottom, 3)
+                .padding(.bottom, 8)
         }
         .background(TitleBackground())
     }
